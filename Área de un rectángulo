@@ -1,0 +1,23 @@
+#include <iostream>
+#include <math.h>
+using namespace std;
+float area(float b, float h);
+int main(){
+    float base, altura;
+    cout<<"Ingresa la base: ";
+    do{
+        cin>>base;
+    }while(base<=0);
+    cout<<"Ingresar la altura: ";
+    do{
+        cin>>altura;
+    }while(altura<=0);
+    cout<<"El area es: "<<(base*altura)/2.0;
+    return 0;
+}
+float area(float b, float h)
+{
+    float aux;
+    aux=(b*h)/2;
+    return aux;
+}
