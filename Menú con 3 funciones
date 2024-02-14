@@ -1,0 +1,78 @@
+#include <iostream>
+#include <math.h> 
+using namespace std;
+
+// Declaraciones de las funciones
+void potencia(float n, int pot);
+int factorial(int n);
+void serie(int x, int num);
+
+int main() {
+    int opcion, pot, num, x;
+    float n;
+
+    do {
+        cout << "1. Potencia" << endl;
+        cout << "2. Factorial" << endl;
+        cout << "3. Serie" << endl;
+        cout << "0. Salir" << endl;
+        cout << "Digite un número: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                cout << "Digite la base: ";
+                cin >> n;
+                cout << "Digite la potencia: ";
+                cin >> pot;
+                potencia(n, pot);
+                break;
+            case 2:
+                cout << "Digite el número para calcular el factorial: ";
+                cin >> num;
+                cout << "El factorial es: " << factorial(num) << endl;
+                break;
+            case 3:
+                do {
+                    cout << "En la serie 3+x+x^2/2!...n, ingrese n: ";
+                    cin >> num;
+                } while (num < 1);
+                cout << "Digite un valor para x: ";
+                cin >> x;
+                serie(x, num);
+                break;
+            case 0:
+                cout << "SALIR" << endl;
+                break;
+            default:
+                cout << "No valido" << endl;
+        }
+    } while (opcion != 0);
+
+    return 0;
+}
+
+void potencia(float n, int pot) {
+    float resultado = 1;
+    for (int i = 1; i <= pot; i++) {
+        resultado *= n;
+    }
+    cout << "El resultado es: " << resultado << endl;
+}
+
+int factorial(int n) {
+    int acum = 1;
+    for (int i = 1; i <= n; i++) {
+        acum *= i;
+    }
+    return acum;
+}
+
+void serie(int x, int num) {
+    float result = 0;
+    for (int i = 0; i < num; i++) {
+        result += pow(x, i) / factorial(i);
+    }
+    float sum = 3 + x + result;
+    cout << "Respuesta: " << sum << endl;
+}
