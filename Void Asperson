@@ -1,0 +1,68 @@
+#include <iostream>
+using namespace std; 
+void potencia(float x, float num, float &result);
+int factorial(int x);
+float serie(float x, float n);
+
+int main()
+{
+    int op, Factorial;
+    float base, exponente, x, n, r;
+    do {
+        cout<<"menu"<<endl;
+        cout<<"1. Potencia"<<endl;
+        cout<<"2. Factorial"<<endl;
+        cout<<"3. Serie"<<endl;
+        cout<<"0. Salir"<<endl;
+        cin>>op;
+        switch(op)
+        {
+            case 1: cout<<"Ingresar base: "<<endl;
+                    cin>>base;
+                    cout<<"Ingresar exponente: "<<endl;
+                    cin>>exponente;
+                    potencia(base, exponente, r);
+                    cout<<"La potencia es: "<<r;
+                    cout<<"num"<<exponente;
+                    break;
+            case 2: cout<<"Factorial de:";
+                    cin>>Factorial;
+                    cout<<"Factorial de "<<Factorial<<"="<<factorial(Factorial)<<endl;
+                    break;
+            case 3: cout<<"Ingresar x: ";
+                    cin>>x;
+                    cout<<"Ingresar n: ";
+                    cin>>n;
+                    cout<<"La serie es: "<<serie(x,n)<<endl;
+                    break;
+            case 0: cout<<"Salida";
+                    break;
+            default: cout<<"Opcion no valida, seleccione una que se muestra en pantalla";
+                    break;
+        }
+    }while(op!=0);
+    return 0;
+}
+  
+void potencia (float x, float num, float &n){
+    n=1;
+   for (int i=1;i<=num;i++)
+       n=n*x;
+}
+int factorial(int x){
+    float fact=1;
+   for (int i=1;i<=x;i++)
+       fact=fact*i;
+   return fact;
+}
+float serie(float x, float n){
+    int total = 0;
+    float z;
+    
+    for (int i = 2; i <= n; i+2){
+        potencia(x,i , z);
+        total = total + (z / factorial (i));
+    }
+    total = total + 3 + x;
+    return total;
+}
