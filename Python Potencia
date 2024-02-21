@@ -1,0 +1,10 @@
+def potencia(base, exponente):
+   if exponente == 0:
+        return 1
+   else:
+        return base* potencia(base, exponente-1)
+base=float(input("Ingresa Base: "))
+exponente=float(input("Ingresa exponente: "))
+z=potencia(base, exponente) 
+print(z)
+    
