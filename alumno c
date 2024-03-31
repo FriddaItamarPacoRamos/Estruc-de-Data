@@ -1,0 +1,128 @@
+include <iostream>
+#include <string>
+
+using namespace std;
+
+const int MAX_ALUMNOS = 100; // Máximo número de alumnos
+
+struct Alumno {
+    string nombre;
+    int nota;
+};
+
+int numAlumnos = 0;
+Alumno alumnos[MAX_ALUMNOS];
+
+void ingresarAlumno();
+void listarAlumnos();
+void ordenarAlfabeticamente();
+void sacarMejorNota();
+void sacarPromedioNotas();
+
+int main() {
+    int opcion;
+
+    do {
+        cout << "\nMenu de Opciones" << endl;
+        cout << "1. Ingresar un alumno y su nota" << endl;
+        cout << "2. Listar los alumnos" << endl;
+        cout << "3. Ordenar alfabeticamente" << endl;
+        cout << "4. Sacar la mejor nota" << endl;
+        cout << "5. Sacar el promedio de notas" << endl;
+        cout << "0. Salir" << endl;
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+
+        switch (opcion) {
+            case 1:
+                ingresarAlumno();
+                break;
+            case 2:
+                listarAlumnos();
+                break;
+            case 3:
+                ordenarAlfabeticamente();
+                break;
+            case 4:
+                sacarMejorNota();
+                break;
+            case 5:
+                sacarPromedioNotas();
+                break;
+            case 0:
+                cout << "Saliendo del programa..." << endl;
+                break;
+            default:
+                cout << "Opcion invalida. Intente de nuevo." << endl;
+                break;
+        }
+    } while (opcion != 0);
+
+    return 0;
+}
+
+void ingresarAlumno() {
+    if (numAlumnos < MAX_ALUMNOS) {
+        cout << "Ingrese el nombre del alumno: ";
+        cin >> alumnos[numAlumnos].nombre;
+        cout << "Ingrese la nota del alumno: ";
+        cin >> alumnos[numAlumnos].nota;
+        numAlumnos++;
+        cout << "Alumno ingresado correctamente." << endl;
+    } else {
+        cout << "No se pueden ingresar mas alumnos." << endl;
+    }
+}
+
+void listarAlumnos() {
+    if (numAlumnos > 0) {
+        cout << "Listado de Alumnos:" << endl;
+        for (int i = 0; i < numAlumnos; i++) {
+            cout << alumnos[i].nombre << ": " << alumnos[i].nota << endl;
+        }
+    } else {
+        cout << "No hay alumnos ingresados." << endl;
+    }
+}
+
+void ordenarAlfabeticamente() {
+    for (int i = 0; i < numAlumnos - 1; i++) {
+        for (int j = 0; j < numAlumnos - i - 1; j++) {
+            if (alumnos[j].nombre > alumnos[j + 1].nombre) {
+                Alumno temp = alumnos[j];
+                alumnos[j] = alumnos[j + 1];
+                alumnos[j + 1] = temp;
+            }
+        }
+    }
+    cout << "Alumnos ordenados alfabeticamente." << endl;
+}
+
+void sacarMejorNota() {
+    if (numAlumnos > 0) {
+        int mejorNota = alumnos[0].nota;
+        string mejorAlumno = alumnos[0].nombre;
+        for (int i = 1; i < numAlumnos; i++) {
+            if (alumnos[i].nota > mejorNota) {
+                mejorNota = alumnos[i].nota;
+                mejorAlumno = alumnos[i].nombre;
+            }
+        }
+        cout << "El alumno con la mejor nota es: " << mejorAlumno << " con nota: " << mejorNota << endl;
+    } else {
+        cout << "No hay alumnos ingresados." << endl;
+    }
+}
+
+void sacarPromedioNotas() {
+    if (numAlumnos > 0) {
+        int sumaNotas = 0;
+        for (int i = 0; i < numAlumnos; i++) {
+            sumaNotas += alumnos[i].nota;
+        }
+        float promedio = static_cast<float>(sumaNotas) / numAlumnos;
+        cout << "El promedio de notas de los alumnos es: " << promedio << endl;
+    } else {
+        cout << "No hay alumnos ingresados." << endl;
+    }
+}
