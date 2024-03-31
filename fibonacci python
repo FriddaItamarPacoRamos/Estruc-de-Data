@@ -1,0 +1,8 @@
+def fibonacci(num):
+    if(num<=1):
+        return num
+    else:
+        return fibonacci(num-1)+fibonacci(num-2)
+print("Ingrese el numero de la posicion de fibonacci")
+num=int(input())
+print("El factorial es", fibonacci(num))
