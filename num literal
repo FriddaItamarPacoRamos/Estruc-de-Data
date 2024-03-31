@@ -1,0 +1,45 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+void convertirLiteral(int num);
+
+int main() {
+    int num;
+
+    do {
+        cout << "Ingrese un numero entero entre 1 y 100 (o 0 para salir): ";
+        cin >> num;
+
+        if (num >= 1 && num <= 100) {
+            convertirLiteral(num);
+        } else if (num != 0) {
+            cout << "Numero fuera de rango. Por favor ingrese un numero entre 1 y 100." << endl;
+        }
+    } while (num != 0);
+
+    return 0;
+}
+
+void convertirLiteral(int num) {
+    string unidades[] = {"", "UNO", "DOS", "TRES", "CUATRO", "CINCO", "SEIS", "SIETE", "OCHO", "NUEVE"};
+    string especiales[] = {"", "ONCE", "DOCE", "TRECE", "CATORCE", "QUINCE", "DIECISEIS", "DIECISIETE", "DIECIOCHO", "DIECINUEVE"};
+    string decenas[] = {"", "", "VEINTI", "TREINTA", "CUARENTA", "CINCUENTA", "SESENTA", "SETENTA", "OCHENTA", "NOVENTA"};
+    string centenas[] = {"", "CIEN", "DOSCIENTOS", "TRESCIENTOS", "CUATROCIENTOS", "QUINIENTOS", "SEISCIENTOS", "SETECIENTOS", "OCHOCIENTOS", "NOVECIENTOS"};
+
+    if (num <= 9) {
+        cout << unidades[num] << endl;
+    } else if (num >= 11 && num <= 19) {
+        cout << especiales[num - 10] << endl;
+    } else if (num >= 21 && num <= 99) {
+        int unidad = num % 10;
+        int decena = num / 10;
+        if (unidad == 0) {
+            cout << decenas[decena] << endl;
+        } else {
+            cout << decenas[decena] + " Y " + unidades[unidad] << endl;
+        }
+    } else if (num == 100) {
+        cout << "CIEN" << endl;
+    }
+}
