@@ -1,0 +1,66 @@
+#include "pila.h"
+#include <iostream>
+
+using namespace std;
+
+void insertarElementos(Pila &pila, int numElementos) {
+    for (int i = 0; i < numElementos; i++) {
+        int elemento;
+        cout << "Ingrese el valor del elemento " << i + 1 << ": ";
+        cin >> elemento;
+        pila.Apilar(elemento);
+    }
+}
+
+int main() {
+    Pila miPila;
+
+    int numElementos;
+    cout << "¿Cuántos elementos desea apilar?: ";
+    cin >> numElementos;
+    insertarElementos(miPila, numElementos);
+
+    // Ver contenido de la pila
+    cout << "Contenido de la pila:" << endl;
+    miPila.VerPila();
+
+    // Eliminar elementos repetidos
+    miPila.EliminarRepetidos();
+    cout << "Contenido de la pila después de eliminar elementos repetidos:" << endl;
+    miPila.VerPila();
+
+    // Ver cima de la pila
+    int cima;
+    if (miPila.CimaPila(cima)) {
+        cout << "Elemento en la cima: " << cima << endl;
+    }
+
+    // Desapilar un elemento
+    miPila.Desapilar();
+    cout << "Contenido de la pila después de desapilar un elemento:" << endl;
+    miPila.VerPila();
+
+    // Limpiar la pila
+    miPila.LimpiarPila();
+    cout << "Contenido de la pila después de limpiarla:" << endl;
+    miPila.VerPila();
+
+    // Comprobar si la pila está vacía
+    if (miPila.PilaVacia()) {
+        cout << "La pila está vacía." << endl;
+    } else {
+        cout << "La pila no está vacía." << endl;
+    }
+
+    // Comparar dos pilas
+    Pila otraPila;
+    insertarElementos(otraPila, numElementos);
+
+    if (miPila.Iguales(otraPila)) {
+        cout << "Las pilas son iguales." << endl;
+    } else {
+        cout << "Las pilas no son iguales." << endl;
+    }
+
+    return 0;
+}
