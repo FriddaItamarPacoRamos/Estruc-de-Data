@@ -1,0 +1,37 @@
+class Matriz:
+    def __init__(self, n):
+        self.n = n
+        self.matriz = [[0] * n for _ in range(n)]
+
+    def llenar_matriz(self):
+        print("Ingrese los elementos de la matriz:")
+        for i in range(self.n):
+            for j in range(self.n):
+                self.matriz[i][j] = int(input(f"Elemento [{i}][{j}]: "))
+
+    def mostrar_matriz(self):
+        for fila in self.matriz:
+            print(" ".join(map(str, fila)))
+
+    def transformar_matriz(self):
+        for i in range(self.n):
+            for j in range(self.n):
+                if self.matriz[i][j] % 2 == 0:
+                    self.matriz[i][j] += 2
+                else:
+                    self.matriz[i][j] -= 1
+
+if __name__ == "__main__":
+    n = int(input("Ingrese el tamaño de la matriz (n): "))
+
+    mi_matriz = Matriz(n)
+
+    mi_matriz.llenar_matriz()
+
+    print("Matriz original:")
+    mi_matriz.mostrar_matriz()
+
+    mi_matriz.transformar_matriz()
+
+    print("Matriz transformada:")
+    mi_matriz.mostrar_matriz()
